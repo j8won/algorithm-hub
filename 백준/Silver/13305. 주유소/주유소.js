@@ -5,14 +5,21 @@ const input = require("fs")
   .split("\n");
 
 const N = +input.shift();
-const map = input.shift().split(" ").map(Number);
-const prices = input.pop().split(" ").map(Number).slice(0, -1);
+const map = input
+  .shift()
+  .split(" ")
+  .map((e) => BigInt(e));
+const prices = input
+  .pop()
+  .split(" ")
+  .map((e) => BigInt(e))
+  .slice(0, -1);
 const totalMove = map.reduce((acc, cur) => acc + cur);
 
 let minPrice = prices[0];
-let move = 0;
-let mapIdx = 0;
-let totalPrice = 0;
+let move = 0n;
+let mapIdx = 0n;
+let totalPrice = 0n;
 
 while (move < totalMove) {
   if (prices[mapIdx] < minPrice) {
@@ -23,4 +30,4 @@ while (move < totalMove) {
   move += map[mapIdx];
   mapIdx++;
 }
-console.log(totalPrice);
+console.log(String(totalPrice));
