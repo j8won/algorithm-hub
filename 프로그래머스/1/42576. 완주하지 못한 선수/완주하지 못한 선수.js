@@ -1,11 +1,30 @@
 function solution(participant, completion) {
-    var answer = '';
-    participant.sort();
-    completion.sort();
+    let map = {};
     
-    for (let i = 0; i < participant.length; i++) {
-        if (participant[i] !== completion[i]) {
-            return participant[i];
+    for (const p of participant) {
+        if (!map[p]) {
+            map[p] = 1
+        } else {
+            map[p] += 1
         }
     }
+
+    
+    for (const p of completion) {
+        map[p] -= 1
+    }
+    
+
+    
+    const leftOver = Object.entries(map).filter(([key, value]) => {
+        if (value >= 1) {
+            return true
+        }
+        
+        return false
+    })
+    
+
+    
+    return leftOver[0][0]
 }
