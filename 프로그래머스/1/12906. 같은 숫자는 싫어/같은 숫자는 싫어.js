@@ -1,11 +1,21 @@
 function solution(arr)
 {
-    var answer = [];
+    let answer = [];
     
-    for (let i=0; i < arr.length; i++){
-        if (i !== 0 && arr[i] === arr[i-1]) continue;
-        answer.push(arr[i]);
+    let left=0, right=0;
+    
+    while(left<arr.length){
+        if (arr[left] !== arr[right]) {
+            answer.push(arr[left])
+            left = right;
+            right = right;
+            continue;
+        }
+        
+        right++
+        
     }
     
-    return answer;
+    return answer
+    
 }
